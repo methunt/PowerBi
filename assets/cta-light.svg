@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 152"
+     width="1320" height="152" role="img" aria-label="Open the live report">
+  <style>
+    .rise  { animation: rise .55s cubic-bezier(.2,.7,.3,1) both; }
+    @keyframes rise { from { transform: translateY(9px) } to { transform: translateY(0) } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important } }
+    .sheen { animation: sheen 4.5s ease-in-out infinite 1.4s; }
+    @keyframes sheen { from { transform: translateX(-200px) }
+                        to   { transform: translateX(1320px) } }
+  </style>
+  <defs>
+    <linearGradient id="btn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2563EB" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#2563EB" stop-opacity="0.86"/>
+    </linearGradient>
+    <filter id="sh" x="-20%" y="-40%" width="140%" height="200%">
+      <feDropShadow dx="0" dy="6" stdDeviation="9" flood-color="#2563EB"
+                    flood-opacity="0.34"/>
+    </filter>
+    <clipPath id="clip"><rect x="210" y="18" width="900" height="92" rx="46"/></clipPath>
+    <linearGradient id="sheenfade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <g class="rise">
+    <rect x="210" y="18" width="900" height="92" rx="46" fill="url(#btn)" filter="url(#sh)"/>
+    <g clip-path="url(#clip)">
+      <rect class="sheen" x="210" y="18" width="150" height="92" fill="url(#sheenfade)"/>
+    </g>
+    <!-- Font sizes look oversized in the source because the asset is drawn at
+         1320 and displayed at width="660" - halve them to judge the result. -->
+    <text x="660" y="60" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
+          font-size="32" font-weight="700" fill="#FFFFFF">Open the live report</text>
+    <text x="660" y="90" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="19"
+          fill="#FFFFFF" opacity="0.86">runs in your browser · no sign-in · synthetic data</text>
+  </g>
+</svg>

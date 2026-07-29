@@ -1,0 +1,55 @@
+{
+  "_comment": "Root landing page. BigQuery figures are read from that project's own summary.json so the hero cannot drift from the committed sample data. The two toolkit figures are measured runs - see readme-assets.remap.json and readme-assets.descriptions.json for how.",
+
+  "out_dir": "../assets",
+  "facts_from": "../Bigquery & Dbt Cost Observability/sample-data/summary.json",
+  "facts": {
+    "projects": 3,
+    "report_pages": 7,
+    "remap_changes": 119,
+    "tmdl_fields": 240
+  },
+
+  "hero": {
+    "name": "hero",
+    "title": "Power BI, as source code",
+    "subtitle": "A semantic model and report you can diff, a scripted month of synthetic data, and two tools that bulk-edit PBIR and TMDL files from a CSV.",
+    "tiles": [
+      { "value": "{jobs_total:,}", "label": "BigQuery jobs modelled, ${spend_total:,.2f} attributed", "colour": "primary" },
+      { "value": "{remap_changes}", "label": "field references repointed in one run", "colour": "violet" },
+      { "value": "{tmdl_fields}", "label": "TMDL fields documented from one CSV", "colour": "cyan" }
+    ],
+    "badges": ["Power BI  ·  PBIP", "PBIR", "TMDL", "Python  ·  PowerShell", "Apache-2.0"]
+  },
+
+  "banners": [
+    {
+      "name": "section-observability",
+      "eyebrow": "Project 1",
+      "title": "BigQuery + dbt Cost Observability",
+      "body": "Where the warehouse spend went, and which dbt model, test or hook spent it. Ships a synthetic month, so it refreshes with no cloud account.",
+      "accent": "primary"
+    },
+    {
+      "name": "section-remap",
+      "eyebrow": "Project 2",
+      "title": "PBIR Field Remap Toolkit",
+      "body": "Repoint every field reference in a report from one table or column to another, driven by a CSV. Inventory first, then one command, no flags to get wrong.",
+      "accent": "violet"
+    },
+    {
+      "name": "section-descriptions",
+      "eyebrow": "Project 3",
+      "title": "Semantic Model Descriptions",
+      "body": "Load field descriptions into a TMDL model from a CSV, as the /// comments that surface as tooltips in Power BI Desktop.",
+      "accent": "cyan"
+    }
+  ],
+
+  "cta": {
+    "name": "cta",
+    "label": "Open the live report",
+    "sublabel": "runs in your browser · no sign-in · synthetic data",
+    "accent": "primary"
+  }
+}

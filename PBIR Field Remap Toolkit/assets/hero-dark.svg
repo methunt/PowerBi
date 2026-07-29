@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 338"
+     width="1200" height="338" role="img" aria-label="PBIR Field Remap Toolkit">
+  <style>
+    /* Entrance animations move things but never fade them. A renderer that does
+       not run CSS - GitHub's mobile app, an email digest, a PDF export - would
+       otherwise show an empty banner, because the from-state of a fade is
+       invisible and fill-mode `both` holds it for the whole delay. Every element
+       here is fully legible with the animation stripped out. */
+    .rise  { animation: rise .55s cubic-bezier(.2,.7,.3,1) both; }
+    @keyframes rise { from { transform: translateY(9px) } to { transform: translateY(0) } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important } }
+    .sweep { animation: sweep .9s cubic-bezier(.2,.7,.3,1) .15s; }
+    .blob  { animation: drift 14s ease-in-out infinite alternate; }
+    @keyframes sweep { from { width: 0 } to { width: 1120px } }
+    @keyframes drift { from { transform: translate(0,0) }
+                        to   { transform: translate(64px,-22px) } }
+  </style>
+  <defs>
+    <radialGradient id="g" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- Deliberately no background rect. GitHub has four surfaces - white,
+       light-high-contrast, dark #0D1117 and dark dimmed #22272E - and any colour
+       painted here is wrong on at least one of them. A transparent canvas is
+       right on all four; the tiles and badges supply the structure a card
+       would have. -->
+  <g class="blob"><circle cx="1010" cy="70" r="240" fill="url(#g)"/></g>
+  <text class="rise" x="40" y="86" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="40" font-weight="800"
+        fill="#E6EDF3" letter-spacing="-1">PBIR Field Remap Toolkit</text>
+  <rect class="sweep" x="40" y="104" width="1120" height="2"
+        rx="1" fill="#30363D"/>
+  <text class="rise" style="animation-delay:0.20s" x="40" y="132"
+        font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="16" fill="#8B949E">Repoint every field reference in a Power BI report from one table or column to another, driven by a CSV. Inventory first, then one</text>
+  <text class="rise" style="animation-delay:0.25s" x="40" y="156"
+        font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="16" fill="#8B949E">command that always scans deep.</text>
+  <g class="rise" style="animation-delay:0.35s">
+    <rect x="40" y="184" width="362" height="86" rx="10" fill="#161B22" stroke="#30363D"/>
+    <rect x="40" y="184" width="4" height="86" rx="2" fill="#8B5CF6"/>
+    <text x="62" y="228" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="30" font-weight="700"
+          fill="#E6EDF3" letter-spacing="-0.5">257</text>
+    <text x="62" y="251" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5"
+          fill="#8B949E">field bindings found across 187 JSON files</text>
+  </g>
+  <g class="rise" style="animation-delay:0.46s">
+    <rect x="418" y="184" width="362" height="86" rx="10" fill="#161B22" stroke="#30363D"/>
+    <rect x="418" y="184" width="4" height="86" rx="2" fill="#3B82F6"/>
+    <text x="440" y="228" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="30" font-weight="700"
+          fill="#E6EDF3" letter-spacing="-0.5">119</text>
+    <text x="440" y="251" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5"
+          fill="#8B949E">references repointed from 16 mapping rules</text>
+  </g>
+  <g class="rise" style="animation-delay:0.57s">
+    <rect x="796" y="184" width="362" height="86" rx="10" fill="#161B22" stroke="#30363D"/>
+    <rect x="796" y="184" width="4" height="86" rx="2" fill="#F59E0B"/>
+    <text x="818" y="228" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="30" font-weight="700"
+          fill="#E6EDF3" letter-spacing="-0.5">12</text>
+    <text x="818" y="251" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5"
+          fill="#8B949E">bookmark files only the deep scan reaches</text>
+  </g>
+  <g class="rise" style="animation-delay:0.85s">
+    <rect x="40" y="292" width="89" height="24" rx="12"
+          fill="#1C2128" stroke="#30363D"/>
+    <text x="84" y="308" text-anchor="middle"
+          font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#8B949E">Python 3.8+</text>
+  </g>
+  <g class="rise" style="animation-delay:0.92s">
+    <rect x="139" y="292" width="89" height="24" rx="12"
+          fill="#1C2128" stroke="#30363D"/>
+    <text x="183" y="308" text-anchor="middle"
+          font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#8B949E">stdlib only</text>
+  </g>
+  <g class="rise" style="animation-delay:0.99s">
+    <rect x="237" y="292" width="42" height="24" rx="12"
+          fill="#1C2128" stroke="#30363D"/>
+    <text x="258" y="308" text-anchor="middle"
+          font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#8B949E">PBIR</text>
+  </g>
+  <g class="rise" style="animation-delay:1.06s">
+    <rect x="290" y="292" width="115" height="24" rx="12"
+          fill="#1C2128" stroke="#30363D"/>
+    <text x="347" y="308" text-anchor="middle"
+          font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#8B949E">writes in place</text>
+  </g>
+</svg>

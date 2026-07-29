@@ -1,0 +1,93 @@
+{
+  "_comment": "Every figure here is a measured run against this repo's own report at Bigquery & Dbt Cost Observability/powerbi/BigQuery dbt Cost Observability.Report, using a 16-rule map that renames the Fact table. The README documents how to reproduce it. Terminal casts reproduce that captured output verbatim except for abbreviated paths, which the caption states.",
+
+  "out_dir": "../PBIR Field Remap Toolkit/assets",
+  "facts": {
+    "report_files": 187,
+    "bindings": 257,
+    "scalars": "10,300",
+    "entities": 11,
+    "pairs": 83,
+    "rules": 16,
+    "changes_targeted": 54,
+    "changes_scan": 119,
+    "files_targeted": 26,
+    "files_scan": 36,
+    "extra": 65,
+    "bookmark_rows": 62,
+    "bookmark_files": 12,
+    "unresolved": 71
+  },
+
+  "hero": {
+    "name": "hero",
+    "title": "PBIR Field Remap Toolkit",
+    "subtitle": "Repoint every field reference in a Power BI report from one table or column to another, driven by a CSV. Inventory first, then one command that always scans deep.",
+    "tiles": [
+      { "value": "{bindings}", "label": "field bindings found across {report_files} JSON files", "colour": "violet" },
+      { "value": "{changes_scan}", "label": "references repointed from {rules} mapping rules", "colour": "primary" },
+      { "value": "{bookmark_files}", "label": "bookmark files only the deep scan reaches", "colour": "warn" }
+    ],
+    "badges": ["Python 3.8+", "stdlib only", "PBIR", "writes in place"]
+  },
+
+  "banners": [
+    {
+      "name": "section-inventory",
+      "eyebrow": "Step 1",
+      "title": "Inventory what is actually bound",
+      "body": "Before you can rename anything you need the real list. One pass exports every semantic binding in the report, plus every scalar value, to CSV.",
+      "accent": "cyan"
+    },
+    {
+      "name": "section-remap",
+      "eyebrow": "Step 2",
+      "title": "Write the map, run it once",
+      "body": "One mode, no flags to get wrong: the deep scan always runs and the changes are always written. Every change and every reference your map did not cover is logged to CSV.",
+      "accent": "violet"
+    },
+    {
+      "name": "section-reference",
+      "eyebrow": "Step 3",
+      "title": "Know what it does not reach",
+      "body": "The mapping rules, the six JSON locations it rewrites, and the places a remap silently leaves behind.",
+      "accent": "warn"
+    }
+  ],
+
+  "casts": [
+    {
+      "name": "cast-inventory",
+      "accent": "cyan",
+      "caption": "captured run against this repo's own report · paths abbreviated",
+      "command": "python export_report_json_inventory.py \"BigQuery dbt Cost Observability.Report\"",
+      "lines": [
+        { "t": "Inventory export complete", "c": "text" },
+        { "t": "Parsed JSON files : {report_files}", "c": "muted" },
+        { "t": "Binding rows      : {bindings}", "c": "cyan", "bold": true },
+        { "t": "Scalar rows       : {scalars}", "c": "muted" },
+        { "t": "FieldBindings CSV : ...Report/inventory_export/FieldBindings.csv", "c": "muted" },
+        { "t": "AllScalars CSV    : ...Report/inventory_export/AllScalars.csv", "c": "muted" }
+      ]
+    },
+    {
+      "name": "cast-apply",
+      "accent": "violet",
+      "caption": "captured run against a copy of this repo's own report · paths abbreviated",
+      "command": "python apply_field_remap.py \"...Report\" --map map.csv",
+      "lines": [
+        { "t": "Mode     : APPLY - writes report files in place, no backup", "c": "warn" },
+        { "t": "", "c": "muted" },
+        { "t": "Loaded {rules} mapping rules (blank-To rows excluded).", "c": "muted" },
+        { "t": "Files written : {files_scan}", "c": "text" },
+        { "t": "Changes applied: {changes_scan}", "c": "good", "bold": true },
+        { "t": "Applied CSV  : ...Report/remap_output/remap_applied.csv", "c": "muted" },
+        { "t": "Unresolved refs: {unresolved} unique pairs", "c": "muted" },
+        { "t": "Unresolved CSV : ...Report/remap_output/remap_unresolved.csv", "c": "muted" },
+        { "t": "", "c": "muted" },
+        { "t": "# the deep scan is not optional: without it this map finds only {changes_targeted},", "c": "violet" },
+        { "t": "# and {bookmark_rows} of the {extra} it would miss are inside {bookmark_files} bookmark files", "c": "violet" }
+      ]
+    }
+  ]
+}

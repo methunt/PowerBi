@@ -1,0 +1,70 @@
+{
+  "_comment": "Figures are a measured run against this repo's own model at Bigquery & Dbt Cost Observability/powerbi/BigQuery dbt Cost Observability.SemanticModel, which was itself documented with this script - so every field already carries a comment and the run reports 240 replaced, 0 inserted. The README states how to reproduce it.",
+
+  "out_dir": "../Semantic Model-Descriptions Mapping/assets",
+  "facts": {
+    "tables": 16,
+    "fields": 240,
+    "columns": 142,
+    "measures": 98,
+    "replaced": 240
+  },
+
+  "hero": {
+    "name": "hero",
+    "title": "Semantic Model Descriptions",
+    "subtitle": "Load field descriptions into a TMDL semantic model from a CSV, as the /// comments that surface as tooltips in Power BI Desktop.",
+    "tiles": [
+      { "value": "{fields}", "label": "fields documented across {tables} tables", "colour": "cyan" },
+      { "value": "{measures}", "label": "measures, {columns} columns, one CSV", "colour": "primary" },
+      { "value": "0", "label": "files rewritten when nothing matched", "colour": "good" }
+    ],
+    "badges": ["PowerShell 5.1+", "TMDL", "UTF-8, no BOM", "re-runnable"]
+  },
+
+  "banners": [
+    {
+      "name": "section-csv",
+      "eyebrow": "Step 1",
+      "title": "Build the CSV",
+      "body": "Four columns, and the table and field names have to match the model exactly. Getting them from the model itself beats typing them.",
+      "accent": "cyan"
+    },
+    {
+      "name": "section-run",
+      "eyebrow": "Step 2",
+      "title": "Run it, then reopen the model",
+      "body": "Descriptions land as /// comment lines above each declaration. Re-running replaces them rather than stacking them, so the script is safe to run repeatedly.",
+      "accent": "primary"
+    },
+    {
+      "name": "section-reference",
+      "eyebrow": "Step 3",
+      "title": "Know how it can fail quietly",
+      "body": "It never errors on a field it cannot find. Everything that makes a row miss, and how to tell a miss from a match.",
+      "accent": "warn"
+    }
+  ],
+
+  "casts": [
+    {
+      "name": "cast-run",
+      "accent": "cyan",
+      "caption": "captured run against this repo's own semantic model, already fully documented",
+      "command": ".\\Add-PBIRDescriptions.ps1 -SemanticModelPath \"...SemanticModel\" -CsvPath descriptions.csv",
+      "lines": [
+        { "t": "[SAVED] dbt_node_executions.tmdl (31 field(s) processed)", "c": "muted" },
+        { "t": "[SAVED] dim_Date.tmdl (9 field(s) processed)", "c": "muted" },
+        { "t": "[SAVED] Fact.tmdl (40 field(s) processed)", "c": "muted" },
+        { "t": "[SAVED] Measure.tmdl (98 field(s) processed)", "c": "muted" },
+        { "t": "", "c": "muted" },
+        { "t": "=== Summary ===", "c": "text" },
+        { "t": "  Descriptions inserted : 0", "c": "muted" },
+        { "t": "  Descriptions replaced : {replaced}", "c": "good", "bold": true },
+        { "t": "  Fields not found      : 0", "c": "muted" },
+        { "t": "", "c": "muted" },
+        { "t": "# every field already carried a comment, so all {replaced} were replaced in place", "c": "cyan" }
+      ]
+    }
+  ]
+}
