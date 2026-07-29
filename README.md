@@ -1,11 +1,7 @@
-<!-- GitHub's sanitiser drops embedded frames, so the live report cannot be inlined
-     here - the hero doubles as the link out to it. -->
-<a href="https://app.powerbi.com/view?r=eyJrIjoiYWUyY2IyOWQtNWVlOS00Y2JjLWI3MmMtZGE1N2ZhNDVhZDVjIiwidCI6IjExMWJhNTQ2LWQ1ZjQtNDgwYS05OGE3LWRmYjYzYjgzMGZiMSIsImMiOjEwfQ%3D%3D">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
-    <img alt="Power BI, as source code — a semantic model and report you can diff, a scripted month of synthetic data, and two tools that bulk-edit PBIR and TMDL files from a CSV. 4,894 BigQuery jobs modelled and $662.98 attributed; 119 field references repointed in one run; 240 TMDL fields documented from one CSV." src="assets/hero-light.svg">
-  </picture>
-</a>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
+  <img alt="Power BI, as source code — a semantic model and report you can diff, a scripted month of synthetic data, and two tools that bulk-edit PBIR and TMDL files from a CSV. 4,894 BigQuery jobs modelled and $662.98 attributed; 119 field references repointed in one run; 240 TMDL fields documented from one CSV." src="assets/hero-light.svg">
+</picture>
 
 <p>
   <img alt="Power BI PBIP" src="https://img.shields.io/badge/Power%20BI-PBIP-F2C811?style=flat-square&logo=powerbi&logoColor=black">
@@ -22,26 +18,6 @@ Three Power BI projects that all treat the artefacts as **files rather than clic
 | 💸 | **[BigQuery + dbt Cost Observability](#-observability)** | Where the warehouse spend went, and which dbt model, test or hook spent it. **Runs offline** against a committed synthetic month — no cloud account. |
 | 🔁 | **[PBIR Field Remap Toolkit](#-remap)** | Repoint every field reference in a report from one table or column to another, from a CSV. **Writes in place — commit first.** |
 | 📄 | **[Semantic Model Descriptions](#-descriptions)** | Load field descriptions into a TMDL model from a CSV, as the `///` comments Desktop shows as tooltips. |
-
----
-
-## 🎯 What these have in common
-
-| 1️⃣ The artefact is text | 2️⃣ The numbers here are measured | 3️⃣ The limitations are written down |
-|---|---|---|
-| A PBIP project is a folder of JSON and TMDL. Once you accept that, a report becomes something you can review in a pull request, rename in bulk, and regenerate — rather than something you can only edit by hand in Desktop. | Every figure on these pages came from a run, not an estimate. The report's graphics read from the same `summary.json` the data generator wrote, and both toolkits were measured against the report and model in this repo. | Each project carries a *things that will bite you* table covering the cases where it returns a wrong or empty answer without complaining. A documented limitation is worth more than an undocumented one. |
-| Two of the three projects exist only because the format is text: you cannot bulk-remap a `.pbix`. | The one place a figure could drift — the cost report's diagrams — reads its numbers from the generator's own output, so it cannot. | Both scripts edit in place with no backup. That is stated at the top of both, not buried. |
-
----
-
-<a href="https://app.powerbi.com/view?r=eyJrIjoiYWUyY2IyOWQtNWVlOS00Y2JjLWI3MmMtZGE1N2ZhNDVhZDVjIiwidCI6IjExMWJhNTQ2LWQ1ZjQtNDgwYS05OGE3LWRmYjYzYjgzMGZiMSIsImMiOjEwfQ%3D%3D">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/cta-dark.svg">
-    <img alt="Open the live report in the Power BI service — runs in your browser, no sign-in, synthetic data" src="assets/cta-light.svg" width="660">
-  </picture>
-</a>
-
-The cost report is published read-only, on the same committed month of synthetic data that ships in this repo. Cross-filtering, the field-parameter pills and drillthrough all work in it.
 
 ---
 
@@ -77,7 +53,7 @@ Rename a column in the semantic model and every visual bound to it breaks, with 
 | 🔁 | **Rewrites the derived strings too** | `queryRef` and `selector.metadata` are rebuilt from the field pair, so they cannot disagree with it |
 | 🔖 | **The deep scan is not optional** | it always runs, because the same 16 rules find **119 changes rather than 54** with it — and **62 of the extra 65 are inside 12 bookmark files** |
 
-**[Read the full README →](PBIR%20Field%20Remap%20Toolkit/README.md)** — the CSV contract, every JSON location it rewrites, the output logs, and ten ways it can bite you.
+**[Read the full README →](PBIR%20Field%20Remap%20Toolkit/README.md)** — the CSV contract, every JSON location it rewrites, the output logs, and the ways it can bite you.
 
 ---
 
@@ -122,7 +98,7 @@ Both toolkits ship a `SKILL.md` describing their workflow for an assistant that 
 
 ### 🎨 Rebuilding this page's graphics
 
-The hero, section banners and button are generated as light **and** dark variants from a spec, so the two cannot drift apart. The cost figures in the hero are read from the observability project's `summary.json`, which its data generator writes.
+The hero and section banners are generated as light **and** dark variants from a spec, so the two cannot drift apart. The cost figures in the hero are read from the observability project's `summary.json`, which its data generator writes.
 
 ```bash
 python scripts/build_readme_assets.py --spec scripts/readme-assets.root.json

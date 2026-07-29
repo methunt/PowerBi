@@ -152,12 +152,14 @@ def hero(spec: dict, facts: dict) -> str:
 
     # Everything below the rule is positioned off the subtitle's line count, so a
     # long subtitle grows the canvas instead of colliding with the tile row.
-    sub_lines = wrap(subtitle, 134) if subtitle else []
-    rule_y = 104 if sub_lines else 100
-    last_text_y = (132 + (len(sub_lines) - 1) * 24) if sub_lines else rule_y
-    tiles_y = last_text_y + 28
-    badge_y = (tiles_y + 108) if tiles_in else tiles_y
-    height = (badge_y + 46) if badges else (tiles_y + 110)
+    # See the note in banner(): drawn at 1200, read at ~900, so every size here
+    # arrives a third smaller than it looks in the source.
+    sub_lines = wrap(subtitle, 112) if subtitle else []
+    rule_y = 116 if sub_lines else 112
+    last_text_y = (148 + (len(sub_lines) - 1) * 28) if sub_lines else rule_y
+    tiles_y = last_text_y + 30
+    badge_y = (tiles_y + 122) if tiles_in else tiles_y
+    height = (badge_y + 54) if badges else (tiles_y + 124)
 
     # Tiles share the row evenly so 2, 3 or 4 all look deliberate.
     tiles = []
@@ -172,11 +174,11 @@ def hero(spec: dict, facts: dict) -> str:
             label = esc(fill(t.get("label", ""), facts))
             tiles.append(f"""
   <g class="rise" style="animation-delay:{0.35 + i * 0.11:.2f}s">
-    <rect x="{x}" y="{tiles_y}" width="{w}" height="86" rx="10" fill="__CARD__" stroke="__BORDER__"/>
-    <rect x="{x}" y="{tiles_y}" width="4" height="86" rx="2" fill="{col}"/>
-    <text x="{x + 22}" y="{tiles_y + 44}" font-family="__FONT__" font-size="30" font-weight="700"
+    <rect x="{x}" y="{tiles_y}" width="{w}" height="100" rx="10" fill="__CARD__" stroke="__BORDER__"/>
+    <rect x="{x}" y="{tiles_y}" width="4" height="100" rx="2" fill="{col}"/>
+    <text x="{x + 22}" y="{tiles_y + 50}" font-family="__FONT__" font-size="35" font-weight="700"
           fill="__TEXT__" letter-spacing="-0.5">{value}</text>
-    <text x="{x + 22}" y="{tiles_y + 67}" font-family="__FONT__" font-size="12.5"
+    <text x="{x + 22}" y="{tiles_y + 78}" font-family="__FONT__" font-size="16.5"
           fill="__MUTED__">{label}</text>
   </g>""")
             x += w + gap
@@ -184,21 +186,21 @@ def hero(spec: dict, facts: dict) -> str:
     bx = 40
     badge_svg = []
     for i, b in enumerate(badges):
-        bw = 16 + len(b) * 6.6
+        bw = 24 + len(b) * 8.4
         badge_svg.append(f"""
   <g class="rise" style="animation-delay:{0.85 + i * 0.07:.2f}s">
-    <rect x="{bx:.0f}" y="{badge_y}" width="{bw:.0f}" height="24" rx="12"
+    <rect x="{bx:.0f}" y="{badge_y}" width="{bw:.0f}" height="32" rx="16"
           fill="__CARD2__" stroke="__BORDER__"/>
-    <text x="{bx + bw / 2:.0f}" y="{badge_y + 16}" text-anchor="middle"
-          font-family="__FONT__" font-size="11" fill="__MUTED__">{b}</text>
+    <text x="{bx + bw / 2:.0f}" y="{badge_y + 21}" text-anchor="middle"
+          font-family="__FONT__" font-size="15.5" fill="__MUTED__">{b}</text>
   </g>""")
         bx += bw + 10
 
     sub = ""
     for i, line in enumerate(sub_lines):
         sub += (f"""
-  <text class="rise" style="animation-delay:{0.2 + i * 0.05:.2f}s" x="40" y="{132 + i * 24}"
-        font-family="__FONT__" font-size="16" fill="__MUTED__">{esc(line)}</text>""")
+  <text class="rise" style="animation-delay:{0.2 + i * 0.05:.2f}s" x="40" y="{148 + i * 28}"
+        font-family="__FONT__" font-size="19.5" fill="__MUTED__">{esc(line)}</text>""")
 
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 {height}"
      width="1200" height="{height}" role="img" aria-label="{title}">
@@ -226,7 +228,7 @@ def hero(spec: dict, facts: dict) -> str:
        right on all four; the tiles and badges supply the structure a card
        would have. -->
   <g class="blob"><circle cx="1010" cy="70" r="240" fill="url(#g)"/></g>
-  <text class="rise" x="40" y="86" font-family="__FONT__" font-size="40" font-weight="800"
+  <text class="rise" x="40" y="92" font-family="__FONT__" font-size="44" font-weight="800"
         fill="__TEXT__" letter-spacing="-1">{title}</text>
   <rect class="sweep" x="40" y="{rule_y}" width="1120" height="2"
         rx="1" fill="__BORDER__"/>{sub}{''.join(tiles)}{''.join(badge_svg)}
@@ -243,18 +245,26 @@ def banner(spec: dict, facts: dict) -> str:
     title = esc(fill(spec["title"], facts))
     body = fill(spec.get("body", ""), facts)
     col = accent(spec.get("accent", "primary"), f"banner {spec.get('name')}")
-    lines = wrap(body, 150)
-    height = 118 + max(0, len(lines) - 1) * 22
+
+    # Sizes are chosen for the RENDERED result, not the source. The canvas is
+    # 1200 wide and GitHub's content column is ~900, so everything here is seen
+    # at 0.75x: a 12px source size arrives as 9px, which is why the first pass
+    # of these banners had an eyebrow nobody could read. Divide by 1.33 to see
+    # what the reader gets.
+    lines = wrap(body, 122)
+    body_y0 = 108 if eyebrow else 88
+    body_step = 26
+    height = body_y0 + max(0, len(lines) - 1) * body_step + 30
 
     body_svg = "".join(f"""
-  <text x="40" y="{86 + i * 22}" font-family="__FONT__" font-size="14.5"
+  <text x="40" y="{body_y0 + i * body_step}" font-family="__FONT__" font-size="17.5"
         fill="__MUTED__">{esc(line)}</text>""" for i, line in enumerate(lines))
 
     eyebrow_svg = ""
     if eyebrow:
         eyebrow_svg = f"""
-  <text x="40" y="34" font-family="__MONO__" font-size="11.5" font-weight="600"
-        letter-spacing="1.4" fill="{col}">{eyebrow.upper()}</text>"""
+  <text x="40" y="42" font-family="__MONO__" font-size="17" font-weight="700"
+        letter-spacing="1.6" fill="{col}">{eyebrow.upper()}</text>"""
 
     # The wash is a tint of the accent, not a solid fill: a solid band fights the
     # page on every one of GitHub's four surfaces.
@@ -271,7 +281,7 @@ def banner(spec: dict, facts: dict) -> str:
   <rect width="1200" height="{height}" rx="12" fill="url(#w)"/>
   <rect width="6" height="{height}" rx="3" fill="{col}"/>
   <g class="rise">{eyebrow_svg}
-  <text x="40" y="{64 if eyebrow else 48}" font-family="__FONT__" font-size="25"
+  <text x="40" y="{78 if eyebrow else 56}" font-family="__FONT__" font-size="29"
         font-weight="700" fill="__TEXT__" letter-spacing="-0.4">{title}</text>{body_svg}
   </g>
 </svg>
@@ -321,8 +331,8 @@ def cta(spec: dict, facts: dict) -> str:
     <!-- Font sizes look oversized in the source because the asset is drawn at
          1320 and displayed at width="660" - halve them to judge the result. -->
     <text x="660" y="{60 if sublabel else 74}" text-anchor="middle" font-family="__FONT__"
-          font-size="32" font-weight="700" fill="#FFFFFF">{label}</text>
-    <text x="660" y="90" text-anchor="middle" font-family="__FONT__" font-size="19"
+          font-size="36" font-weight="700" fill="#FFFFFF">{label}</text>
+    <text x="660" y="90" text-anchor="middle" font-family="__FONT__" font-size="24"
           fill="#FFFFFF" opacity="0.86">{sublabel}</text>
   </g>
 </svg>
@@ -354,9 +364,9 @@ def cast(spec: dict, facts: dict) -> str:
     if not lines_in:
         sys.exit(f"error: cast {spec.get('name')!r} has no lines")
 
-    pad, lh = 30, 23
-    top = 92                      # below the title bar and the prompt line
-    height = top + len(lines_in) * lh + 16
+    pad, lh = 30, 26
+    top = 100                     # below the title bar and the prompt line
+    height = top + len(lines_in) * lh + 18
 
     rows = []
     for i, item in enumerate(lines_in):
@@ -372,7 +382,7 @@ def cast(spec: dict, facts: dict) -> str:
         delay = min(0.055 * i, 1.25)
         rows.append(f"""
   <g class="ln" style="animation-delay:{delay:.2f}s"><text x="{pad}"
-        y="{top + i * lh}" font-family="__MONO__" font-size="13.5"
+        y="{top + i * lh}" font-family="__MONO__" font-size="15.5"
         font-weight="{weight}" fill="__{role.upper()}__"
         xml:space="preserve">{text}</text></g>""")
 
@@ -397,8 +407,8 @@ def cast(spec: dict, facts: dict) -> str:
   <!-- muted, not faint: faint (#484F58) against the dark card (#161B22) is
        effectively invisible - checked against a rasterised preview. -->
   <text x="600" y="25" text-anchor="middle" font-family="__FONT__"
-        font-size="12.5" fill="__MUTED__">{esc(fill(spec.get("caption", ""), facts))}</text>
-  <text x="{pad}" y="68" font-family="__MONO__" font-size="13.5"
+        font-size="15" fill="__MUTED__">{esc(fill(spec.get("caption", ""), facts))}</text>
+  <text x="{pad}" y="72" font-family="__MONO__" font-size="15.5"
         xml:space="preserve"><tspan fill="{col}" font-weight="700">$ </tspan><tspan fill="__TEXT__">{command}</tspan></text>
   <rect x="{pad}" y="{caret_y}" width="8" height="2" fill="{col}"/>{"".join(rows)}
 </svg>

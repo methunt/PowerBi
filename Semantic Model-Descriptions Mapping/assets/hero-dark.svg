@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 314"
-     width="1200" height="314" role="img" aria-label="Semantic Model Descriptions">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 382"
+     width="1200" height="382" role="img" aria-label="Semantic Model Descriptions">
   <style>
     /* Entrance animations move things but never fade them. A renderer that does
        not run CSS - GitHub's mobile app, an email digest, a PDF export - would
@@ -27,58 +27,60 @@
        right on all four; the tiles and badges supply the structure a card
        would have. -->
   <g class="blob"><circle cx="1010" cy="70" r="240" fill="url(#g)"/></g>
-  <text class="rise" x="40" y="86" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="40" font-weight="800"
+  <text class="rise" x="40" y="92" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="44" font-weight="800"
         fill="#E6EDF3" letter-spacing="-1">Semantic Model Descriptions</text>
-  <rect class="sweep" x="40" y="104" width="1120" height="2"
+  <rect class="sweep" x="40" y="116" width="1120" height="2"
         rx="1" fill="#30363D"/>
-  <text class="rise" style="animation-delay:0.20s" x="40" y="132"
-        font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="16" fill="#8B949E">Load field descriptions into a TMDL semantic model from a CSV, as the /// comments that surface as tooltips in Power BI Desktop.</text>
+  <text class="rise" style="animation-delay:0.20s" x="40" y="148"
+        font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="19.5" fill="#8B949E">Load field descriptions into a TMDL semantic model from a CSV, as the /// comments that surface as tooltips in</text>
+  <text class="rise" style="animation-delay:0.25s" x="40" y="176"
+        font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="19.5" fill="#8B949E">Power BI Desktop.</text>
   <g class="rise" style="animation-delay:0.35s">
-    <rect x="40" y="160" width="362" height="86" rx="10" fill="#161B22" stroke="#30363D"/>
-    <rect x="40" y="160" width="4" height="86" rx="2" fill="#22D3EE"/>
-    <text x="62" y="204" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="30" font-weight="700"
+    <rect x="40" y="206" width="362" height="100" rx="10" fill="#161B22" stroke="#30363D"/>
+    <rect x="40" y="206" width="4" height="100" rx="2" fill="#22D3EE"/>
+    <text x="62" y="256" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="35" font-weight="700"
           fill="#E6EDF3" letter-spacing="-0.5">240</text>
-    <text x="62" y="227" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5"
+    <text x="62" y="284" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="16.5"
           fill="#8B949E">fields documented across 16 tables</text>
   </g>
   <g class="rise" style="animation-delay:0.46s">
-    <rect x="418" y="160" width="362" height="86" rx="10" fill="#161B22" stroke="#30363D"/>
-    <rect x="418" y="160" width="4" height="86" rx="2" fill="#3B82F6"/>
-    <text x="440" y="204" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="30" font-weight="700"
+    <rect x="418" y="206" width="362" height="100" rx="10" fill="#161B22" stroke="#30363D"/>
+    <rect x="418" y="206" width="4" height="100" rx="2" fill="#3B82F6"/>
+    <text x="440" y="256" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="35" font-weight="700"
           fill="#E6EDF3" letter-spacing="-0.5">98</text>
-    <text x="440" y="227" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5"
+    <text x="440" y="284" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="16.5"
           fill="#8B949E">measures, 142 columns, one CSV</text>
   </g>
   <g class="rise" style="animation-delay:0.57s">
-    <rect x="796" y="160" width="362" height="86" rx="10" fill="#161B22" stroke="#30363D"/>
-    <rect x="796" y="160" width="4" height="86" rx="2" fill="#10B981"/>
-    <text x="818" y="204" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="30" font-weight="700"
+    <rect x="796" y="206" width="362" height="100" rx="10" fill="#161B22" stroke="#30363D"/>
+    <rect x="796" y="206" width="4" height="100" rx="2" fill="#10B981"/>
+    <text x="818" y="256" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="35" font-weight="700"
           fill="#E6EDF3" letter-spacing="-0.5">0</text>
-    <text x="818" y="227" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5"
+    <text x="818" y="284" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="16.5"
           fill="#8B949E">files rewritten when nothing matched</text>
   </g>
   <g class="rise" style="animation-delay:0.85s">
-    <rect x="40" y="268" width="115" height="24" rx="12"
+    <rect x="40" y="328" width="150" height="32" rx="16"
           fill="#1C2128" stroke="#30363D"/>
-    <text x="98" y="284" text-anchor="middle"
-          font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#8B949E">PowerShell 5.1+</text>
+    <text x="115" y="349" text-anchor="middle"
+          font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="15.5" fill="#8B949E">PowerShell 5.1+</text>
   </g>
   <g class="rise" style="animation-delay:0.92s">
-    <rect x="165" y="268" width="42" height="24" rx="12"
+    <rect x="200" y="328" width="58" height="32" rx="16"
           fill="#1C2128" stroke="#30363D"/>
-    <text x="186" y="284" text-anchor="middle"
-          font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#8B949E">TMDL</text>
+    <text x="229" y="349" text-anchor="middle"
+          font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="15.5" fill="#8B949E">TMDL</text>
   </g>
   <g class="rise" style="animation-delay:0.99s">
-    <rect x="217" y="268" width="102" height="24" rx="12"
+    <rect x="268" y="328" width="133" height="32" rx="16"
           fill="#1C2128" stroke="#30363D"/>
-    <text x="268" y="284" text-anchor="middle"
-          font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#8B949E">UTF-8, no BOM</text>
+    <text x="334" y="349" text-anchor="middle"
+          font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="15.5" fill="#8B949E">UTF-8, no BOM</text>
   </g>
   <g class="rise" style="animation-delay:1.06s">
-    <rect x="329" y="268" width="89" height="24" rx="12"
+    <rect x="411" y="328" width="116" height="32" rx="16"
           fill="#1C2128" stroke="#30363D"/>
-    <text x="374" y="284" text-anchor="middle"
-          font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#8B949E">re-runnable</text>
+    <text x="469" y="349" text-anchor="middle"
+          font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="15.5" fill="#8B949E">re-runnable</text>
   </g>
 </svg>

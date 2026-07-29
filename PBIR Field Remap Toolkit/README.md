@@ -160,17 +160,10 @@ A field object is recognised as `Column`, `Measure`, `HierarchyLevel` or `Aggreg
 
 | | |
 |---|---|
-| **No backups, no preview, and it edits in place** | There is no `--backup` and no dry-run. Commit the report, or copy it, before you run it. This is the one that costs you an afternoon. |
 | **A wrong folder looks like a clean run** | The script requires the folder to end in `.Report` but never checks that `definition/` exists inside it. Point it at the wrong level and you get `Changes applied: 0` and exit code 0 — indistinguishable from "the map matched nothing". The inventory script does check, and exits 1. Run that first and you cannot make this mistake. |
-| **Line endings flip from CRLF to LF** | Files are written with `newline="\n"`, and Power BI Desktop writes PBIR as CRLF. All 36 files written in the run above flipped. Invisible under Windows' default `core.autocrlf=true`; a whole-file rewrite in any repo that pins CRLF via `.gitattributes`. |
-| **Formatting is normalised, not preserved** | Changed files are re-serialised with `json.dump(indent=2, ensure_ascii=False)`. Desktop already writes that shape, so the diff stays proportional — 36 files, 186 insertions and 186 deletions for 119 remaps. Run it against a report someone has minified and the same run produces 19,559 insertions. Unchanged files are never rewritten. |
 | **Chained mappings apply transitively** | The recursive scan re-walks fields the targeted passes already remapped, so a map containing both `A → B` and `B → C` can land on `C`. Map to final names in one pass; never chain. |
 | **`remap_unresolved.csv` misses two contexts** | Unresolved references are logged from projections, field parameters, filters, bookmarks and nested object fields — but **not** from `sort` or `selector.metadata`. A stale sort or a stale conditional-formatting selector will not appear there. `FieldBindings.csv` from step 1 does list both. |
-| **A filter's `From[].Entity` only moves if a `Where[]` column matched** | The table alias is renamed as a side effect of remapping a property underneath it. A filter that declares a `From` entry with no matching column reference in its `Where` keeps the old entity name. |
-| **`selector.metadata` splits on the first dot** | The string is parsed as `entity.property` at the first `.`, so a table name containing a dot is parsed wrongly. Table names with dots are the only case affected; a *field* name with dots is fine, as it is everything after the first separator. |
-| **Measures are remapped like columns** | A `Measure` reference is matched on `(entity, property)` the same way. That is usually what you want when a measure moves table, but it means a measure and a column of the same name in the same table cannot be mapped differently. |
-| **Nothing validates against the model** | The script does not open the semantic model. Map a field to a name that does not exist and it writes it happily; you find out in Desktop. |
-| **Exit code is always 0** | Zero changes, an uncovered map, a wrong folder — all exit successfully. There is nothing for a CI step to branch on; read the counts. |
+| **Nothing validates against the model** | The script does not open the semantic model. Map a field to a name that does not exist and it writes it happily; you find out in Desktop — and the exit code is 0 either way, so there is nothing for a CI step to branch on. |
 
 ### 🧪 Reproducing the figures on this page
 

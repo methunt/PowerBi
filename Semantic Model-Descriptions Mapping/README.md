@@ -123,13 +123,8 @@ Everything below is reference — read it when you need it.
 |---|---|
 | **An LF-only model matches nothing, silently** | The file is split on `` `r`n `` only. Point the script at a model whose `.tmdl` files use bare LF — one that has been through a tool that normalised line endings, or a `.gitattributes` that checks out LF — and **every row reports `[NOT FOUND]`, no file is written, and the script still completes successfully.** Measured: 240 of 240 rows missed on an otherwise identical model. Desktop writes CRLF, so this bites on round-tripped models, not fresh ones. |
 | **A bad `Field Type` reads as a column** | Only the value `Measure` (any casing) selects a `measure` declaration. Anything else — `Metric`, a typo, a blank — silently searches for a **column** of that name and reports the field as not found. The Field Type is never validated. |
-| **Nothing fails the build** | Every miss is a PowerShell warning and a line in the summary. There is no non-zero exit and no `-Strict` switch, so a run that documented nothing looks like a run that documented everything unless you read the counts. Check `Fields not found` every time. |
-| **No backups, and it edits in place** | There is no dry-run and no backup. Commit the model first. |
-| **Names are case-sensitive against the model** | `Table Name` is matched as a filename and `Field Name` via a regex built from the CSV value, so `customerkey` will not match `CustomerKey`. Only `Field Type` is forgiving. |
-| **Only columns and measures** | The regex matches `column` and `measure` declarations indented with exactly one tab. Tables themselves, hierarchies, hierarchy levels, partitions and roles are not reachable — a CSV row naming one is reported as not found. |
-| **First match in the file wins** | The search stops at the first matching declaration. Two declarations of the same name in one table file would only ever see the first, though a valid model cannot contain that. |
-| **The per-table count includes misses** | `[SAVED] Fact.tmdl (40 field(s) processed)` reports the number of CSV rows *for that table*, not the number that matched. The Summary block is the count that tells you what happened. |
-| **Field parameters are ordinary columns here** | `Field Parameter` is accepted as a `Field Type`, but only because it maps to `column` like everything non-Measure. The description lands on the column declaration inside the field-parameter table. |
+| **Nothing fails the run** | Every miss is a PowerShell warning and a line in the summary. There is no non-zero exit and no `-Strict` switch, so a run that documented nothing looks like a run that documented everything unless you read the counts. Check `Fields not found` every time. |
+| **Names are case-sensitive against the model** | `Table Name` is matched as a filename and `Field Name` via a regex built from the CSV value, so `customerkey` will not match `CustomerKey`. Only `Field Type` is forgiving. It also only reaches `column` and `measure` declarations — hierarchies, levels, partitions and roles are not addressable. |
 
 ### 🧪 Reproducing the figures on this page
 

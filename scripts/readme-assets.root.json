@@ -44,12 +44,5 @@
       "body": "Load field descriptions into a TMDL model from a CSV, as the /// comments that surface as tooltips in Power BI Desktop.",
       "accent": "cyan"
     }
-  ],
-
-  "cta": {
-    "name": "cta",
-    "label": "Open the live report",
-    "sublabel": "runs in your browser · no sign-in · synthetic data",
-    "accent": "primary"
-  }
+  ]
 }
