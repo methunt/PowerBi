@@ -23,19 +23,6 @@ A Power BI semantic model over BigQuery's own job history. It answers two questi
 | 🧱 | **[Part 2 · dbt on BigQuery](#-part-2)** | The transformation layer — what each model costs, which runs are healthy, what broke, all joined back to BigQuery billing. |
 | ▶️ | **[Part 3 · Run it yourself](#-part-3)** | Clone, set the parameters, refresh. Works offline against committed sample data. |
 
-<!-- EMBED:START -->
-<p>
-  <a href="https://app.powerbi.com/view?r=eyJrIjoiYWUyY2IyOWQtNWVlOS00Y2JjLWI3MmMtZGE1N2ZhNDVhZDVjIiwidCI6IjExMWJhNTQ2LWQ1ZjQtNDgwYS05OGE3LWRmYjYzYjgzMGZiMSIsImMiOjEwfQ%3D%3D">
-    <img alt="Open the live report in the Power BI service" src="https://img.shields.io/badge/%E2%96%B6%20Open%20the%20live%20report-Power%20BI%20service-F2C811?style=for-the-badge&logo=powerbi&logoColor=black">
-  </a>
-</p>
-<!-- EMBED:END -->
-
-> [!NOTE]
-> **The live report runs in your browser** — real interactivity, on the same committed month of sample data. Click the pills, cross-filter the charts, drill through to a query pattern. Nothing to install and no Google Cloud account.
->
-> Prefer it locally, or want to point it at your own warehouse? See [Part 3](#-part-3).
-
 ---
 
 ## 🎯 The three problems it solves
@@ -44,6 +31,19 @@ A Power BI semantic model over BigQuery's own job history. It answers two questi
 |---|---|---|
 | Cloud billing tells you the project cost $X today. It cannot tell you which user, which query, or which model. | Cost is never spread evenly, so optimisation effort should not be either. | Some of the bill buys you nothing, and that part is the cheapest to remove — no rewriting required. |
 | **Part 1** breaks the bill down by user, statement, region and hour. **Part 2** breaks it down by dbt model, test and hook — including post-hook jobs that dbt's own metadata never records. | In the sample month the **three most expensive target tables carry about two-thirds of the dbt bill**, and **service accounts outspend every human combined**. Both are one glance, not an investigation. | Cache hits bill nothing, BI Engine acceleration cuts billed bytes, and small queries pay a 10 MB floor whether they need it or not. The report shows how much of your spend is each — plus the `dev` / `uat` / `prod` split, which is where surprises usually live. |
+
+---
+
+<!-- EMBED:START -->
+<a href="https://app.powerbi.com/view?r=eyJrIjoiYWUyY2IyOWQtNWVlOS00Y2JjLWI3MmMtZGE1N2ZhNDVhZDVjIiwidCI6IjExMWJhNTQ2LWQ1ZjQtNDgwYS05OGE3LWRmYjYzYjgzMGZiMSIsImMiOjEwfQ%3D%3D">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/cta-dark.svg">
+    <img alt="Open the live report in the Power BI service — runs in your browser, no sign-in, no cloud account" src="assets/cta-light.svg" width="660">
+  </picture>
+</a>
+<!-- EMBED:END -->
+
+The pills, cross-filtering and drillthrough all work in it — it is the real report, on the same committed month of sample data. Prefer it locally, or want to point it at your own warehouse? See [Part 3](#-part-3).
 
 ---
 

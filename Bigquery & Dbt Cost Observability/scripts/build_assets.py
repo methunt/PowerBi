@@ -42,7 +42,7 @@ LIGHT = {
     "text": "#1F2328", "muted": "#656D76", "faint": "#8C959F",
     "primary": "#2563EB", "good": "#059669", "warn": "#D97706", "bad": "#DC2626",
     "violet": "#7C3AED", "cyan": "#0891B2", "track": "#E4E8EC",
-    "glow": "#2563EB", "glowOpacity": "0.07",
+    "glow": "#2563EB", "glowOpacity": "0.07", "ctaShadow": "0.34",
     # Section-banner wash. Dark needs more of it: a 7% tint reads as nothing
     # against #0D1117, where the same value is clearly visible against white.
     "wash": "0.10",
@@ -53,7 +53,9 @@ DARK = {
     "text": "#E6EDF3", "muted": "#8B949E", "faint": "#484F58",
     "primary": "#3B82F6", "good": "#10B981", "warn": "#F59E0B", "bad": "#EF4444",
     "violet": "#8B5CF6", "cyan": "#22D3EE", "track": "#21262D",
-    "glow": "#3B82F6", "glowOpacity": "0.16",
+    # A coloured drop shadow that reads on white disappears on #0D1117, so dark
+    # leans on a stronger one to keep the button lifted off the page.
+    "glow": "#3B82F6", "glowOpacity": "0.16", "ctaShadow": "0.55",
     "wash": "0.22",
 }
 
@@ -363,7 +365,80 @@ def attribution(p: dict, s: dict) -> str:
 
 
 # --------------------------------------------------------------------------- #
-# 4. Section banners
+# 4. Live-report call to action
+# --------------------------------------------------------------------------- #
+
+def cta(p: dict, s: dict) -> str:
+    """The big 'open the live report' button.
+
+    A shields.io badge was too small to notice at a normal scroll speed, and
+    GitHub strips <iframe> so the report cannot be embedded in the page at all -
+    this link is the only route to it, which makes it worth drawing properly.
+    """
+    # The canvas is taller than the button so the transparent margin travels with
+    # the asset. GitHub strips inline style attributes from README HTML, so
+    # spacing cannot be set at the point of use - baking it in is the only way to
+    # guarantee the button is not crowded by the text above and below it.
+    template = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 152" width="660" height="152" role="img" aria-label="Open the live report in the Power BI service">
+  <style>
+    /* The sheen and ring are the only motion, and they ride over a button that
+       is already fully drawn - strip the CSS and nothing is lost but polish. */
+    .sheen { animation: sweep 3.8s ease-in-out infinite 1s }
+    .ring  { animation: pulse 2.6s ease-in-out infinite }
+    @keyframes sweep { 0% { transform: translateX(-260px) }
+                       55%,100% { transform: translateX(700px) } }
+    @keyframes pulse { 0%,100% { opacity: .34 } 50% { opacity: .9 } }
+    @media (prefers-reduced-motion: reduce) { .sheen,.ring { animation: none } }
+  </style>
+  <defs>
+    <linearGradient id="btn" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="__PRIMARY__"/>
+      <stop offset="100%" stop-color="__VIOLET__"/>
+    </linearGradient>
+    <linearGradient id="gloss" x1="0" x2="1">
+      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="50%"  stop-color="#FFFFFF" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="btnClip"><rect x="4" y="6" width="652" height="76" rx="16"/></clipPath>
+    <filter id="lift" x="-20%" y="-40%" width="140%" height="200%">
+      <feDropShadow dx="0" dy="4" stdDeviation="7"
+                    flood-color="__PRIMARY__" flood-opacity="__CTASHADOW__"/>
+    </filter>
+  </defs>
+
+  <!-- Deliberately no background rect. The full-width banners can paint their
+       own because they span the column, but a 660px button that painted
+       __BG__ would show as an off-colour box on any GitHub theme whose canvas
+       is not exactly white or #0D1117 - "dark dimmed" being the obvious one.
+       Transparent composites onto whatever the page actually is.
+
+       Everything sits in one translate so the button keeps its own coordinates
+       and only the offset decides how much clear space sits above it. -->
+  <g transform="translate(0,30)">
+    <rect x="4" y="6" width="652" height="76" rx="16" fill="url(#btn)" filter="url(#lift)"/>
+
+    <g clip-path="url(#btnClip)">
+      <rect class="sheen" x="0" y="6" width="150" height="76" fill="url(#gloss)"/>
+    </g>
+
+    <circle class="ring" cx="46" cy="44" r="21" fill="none" stroke="#FFFFFF"
+            stroke-opacity="0.55" stroke-width="2"/>
+    <circle cx="46" cy="44" r="15.5" fill="#FFFFFF" fill-opacity="0.18"/>
+    <path d="M 41 36.5 L 53 44 L 41 51.5 Z" fill="#FFFFFF"/>
+
+    <text x="84" y="42" font-family="__FONT__" font-size="21" font-weight="700"
+          fill="#FFFFFF" letter-spacing="-0.2">Open the live report</text>
+    <text x="84" y="63" font-family="__FONT__" font-size="12.5"
+          fill="#FFFFFF" fill-opacity="0.88">Power BI service  &#183;  runs in your browser  &#183;  no sign-in, no cloud account</text>
+  </g>
+</svg>
+"""
+    return paint(template, p)
+
+
+# --------------------------------------------------------------------------- #
+# 5. Section banners
 # --------------------------------------------------------------------------- #
 
 # Geometric glyphs rather than emoji: an SVG served through GitHub's image proxy
@@ -509,7 +584,8 @@ def main() -> None:
     s = json.loads(SUMMARY.read_text(encoding="utf-8"))
     ASSETS.mkdir(parents=True, exist_ok=True)
 
-    builders = {"hero": hero, "architecture": architecture, "attribution": attribution}
+    builders = {"hero": hero, "cta": cta, "architecture": architecture,
+                "attribution": attribution}
     for name, spec in SECTIONS.items():
         builders[name] = partial(section, spec=spec)
     for name, fn in builders.items():
