@@ -99,7 +99,7 @@ expression p_DataSource = "SampleCSV" meta [IsParameterQuery=true, Type="Text", 
 	annotation PBI_ResultType = Text
 
 /// Folder holding the sample CSVs. Used only when p_DataSource is "SampleCSV" - point it at the sample-data folder of your clone. A trailing slash or backslash is optional.
-expression p_SampleDataPath = "D:\Git\bigquery-dbt-cost-observability\sample-data" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+expression p_SampleDataPath = "D:\Git\PowerBi\Bigquery & Dbt Cost Observability\sample-data" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
 	lineageTag: 2a7e93b5-0c48-4f61-8ad2-71b9e6c0538f
 	queryGroup: Parameter
 
