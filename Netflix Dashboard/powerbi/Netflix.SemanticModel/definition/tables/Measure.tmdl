@@ -36,25 +36,25 @@ table Measure
 
 		changedProperty = FormatString
 
-	measure Measure = CALCULATE(DISTINCTCOUNT(Netflix[Title]))
+	measure Measure = DISTINCTCOUNT(Netflix[Title])
 		formatString: 0
 		lineageTag: 0c06ffaf-b31f-410f-96de-4c311a1126f4
 
-	measure 'Average Movies by Rating' = CALCULATE(AVERAGEX(KEEPFILTERS(VALUES(Netflix[Rating])), [Total Movies]), KEEPFILTERS(Netflix[Rating]<>BLANK()))
+	measure 'Average Movies by Rating' = CALCULATE(AVERAGEX(VALUES(Netflix[Rating]), [Total Movies]), KEEPFILTERS(Netflix[Rating] <> BLANK()))
 		formatString: 0
 		displayFolder: Movies
 		lineageTag: e894106d-ffeb-48c4-aaa3-9637dac94528
 
 		changedProperty = FormatString
 
-	measure 'Average Movies by Country' = CALCULATE(AVERAGEX(KEEPFILTERS(VALUES(Netflix[Country])), [Total Movies]), KEEPFILTERS(Netflix[Country]<>BLANK()))
+	measure 'Average Movies by Country' = CALCULATE(AVERAGEX(VALUES(Netflix[Country]), [Total Movies]), KEEPFILTERS(Netflix[Country] <> BLANK()))
 		formatString: #,0
 		displayFolder: Movies
 		lineageTag: 81ae1430-94c4-444a-84a1-299d273b0b8e
 
 		changedProperty = FormatString
 
-	measure 'Average Movies by Genre' = CALCULATE(AVERAGEX(KEEPFILTERS(VALUES(Netflix[Genre])), [Total Movies]), KEEPFILTERS(Netflix[Genre]<>BLANK()))
+	measure 'Average Movies by Genre' = CALCULATE(AVERAGEX(VALUES(Netflix[Genre]), [Total Movies]), KEEPFILTERS(Netflix[Genre] <> BLANK()))
 		formatString: #,0
 		displayFolder: Movies
 		lineageTag: b02475f7-f9ab-420c-a7ed-13fe67420155
@@ -65,21 +65,21 @@ table Measure
 		displayFolder: Movies
 		lineageTag: e077fdba-7fde-4b7a-81e0-a3abe3c68255
 
-	measure 'Average TV Shows by Rating' = CALCULATE(AVERAGEX(KEEPFILTERS(VALUES(Netflix[Rating])), [Total TV Shows]), KEEPFILTERS(Netflix[Rating]<>BLANK()))
+	measure 'Average TV Shows by Rating' = CALCULATE(AVERAGEX(VALUES(Netflix[Rating]), [Total TV Shows]), KEEPFILTERS(Netflix[Rating] <> BLANK()))
 		formatString: #,0
 		displayFolder: TV Shows
 		lineageTag: c95e4d52-fff1-4fcb-9491-c0ce2bf8f942
 
 		changedProperty = FormatString
 
-	measure 'Average TV Shows by Country' = CALCULATE(AVERAGEX(KEEPFILTERS(VALUES(Netflix[Country])), [Total TV Shows]), KEEPFILTERS(Netflix[Country]<>BLANK()))
+	measure 'Average TV Shows by Country' = CALCULATE(AVERAGEX(VALUES(Netflix[Country]), [Total TV Shows]), KEEPFILTERS(Netflix[Country] <> BLANK()))
 		formatString: 0
 		displayFolder: TV Shows
 		lineageTag: 1c3d922b-91d8-4cc6-aebc-924753941f60
 
 		changedProperty = FormatString
 
-	measure 'Average TV Shows by Genre' = CALCULATE(AVERAGEX(KEEPFILTERS(VALUES(Netflix[Genre])), [Total TV Shows]), KEEPFILTERS(Netflix[Genre]<>BLANK()))
+	measure 'Average TV Shows by Genre' = CALCULATE(AVERAGEX(VALUES(Netflix[Genre]), [Total TV Shows]), KEEPFILTERS(Netflix[Genre] <> BLANK()))
 		formatString: 0
 		displayFolder: TV Shows
 		lineageTag: 14ded247-6fb8-4b54-b38c-fa1b7e57bf4d

@@ -1187,7 +1187,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Netflix (3)"
+                          "Entity": "Dim Title"
                         }
                       },
                       "Property": "Cast"
@@ -1203,7 +1203,7 @@
                     "From": [
                       {
                         "Name": "n",
-                        "Entity": "Netflix (3)",
+                        "Entity": "Dim Title",
                         "Type": 0
                       }
                     ],
@@ -1240,7 +1240,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Netflix (3)"
+                          "Entity": "Dim Title"
                         }
                       },
                       "Property": "Country"
@@ -1255,7 +1255,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Netflix (3)"
+                          "Entity": "Dim Title"
                         }
                       },
                       "Property": "Rating"
@@ -1271,7 +1271,7 @@
                     "From": [
                       {
                         "Name": "n",
-                        "Entity": "Netflix (3)",
+                        "Entity": "Dim Title",
                         "Type": 0
                       }
                     ],
@@ -1309,7 +1309,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Netflix (3)"
+                          "Entity": "Dim Title"
                         }
                       },
                       "Property": "Type"
@@ -1325,7 +1325,7 @@
                     "From": [
                       {
                         "Name": "n",
-                        "Entity": "Netflix (3)",
+                        "Entity": "Dim Title",
                         "Type": 0
                       }
                     ],
@@ -1362,7 +1362,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Netflix (3)"
+                          "Entity": "Dim Title"
                         }
                       },
                       "Property": "Release Year"
@@ -1377,7 +1377,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Netflix (3)"
+                          "Entity": "Dim Title"
                         }
                       },
                       "Property": "Title"
@@ -1397,7 +1397,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Netflix (3)"
+                          "Entity": "Dim Title"
                         }
                       },
                       "Property": "Title"
@@ -1467,7 +1467,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Netflix (3)"
+                          "Entity": "Dim Title"
                         }
                       },
                       "Property": "Cast"
@@ -1483,7 +1483,7 @@
                     "From": [
                       {
                         "Name": "n",
-                        "Entity": "Netflix (3)",
+                        "Entity": "Dim Title",
                         "Type": 0
                       }
                     ],
@@ -1520,7 +1520,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Netflix (3)"
+                          "Entity": "Dim Title"
                         }
                       },
                       "Property": "Country"
@@ -1535,7 +1535,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Netflix (3)"
+                          "Entity": "Dim Title"
                         }
                       },
                       "Property": "Rating"
@@ -1551,7 +1551,7 @@
                     "From": [
                       {
                         "Name": "n",
-                        "Entity": "Netflix (3)",
+                        "Entity": "Dim Title",
                         "Type": 0
                       }
                     ],
@@ -1589,7 +1589,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Netflix (3)"
+                          "Entity": "Dim Title"
                         }
                       },
                       "Property": "Type"
@@ -1605,7 +1605,7 @@
                     "From": [
                       {
                         "Name": "n",
-                        "Entity": "Netflix (3)",
+                        "Entity": "Dim Title",
                         "Type": 0
                       }
                     ],
@@ -1642,7 +1642,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Netflix (3)"
+                          "Entity": "Dim Title"
                         }
                       },
                       "Property": "Release Year"
@@ -1657,7 +1657,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Netflix (3)"
+                          "Entity": "Dim Title"
                         }
                       },
                       "Property": "Title"
@@ -1677,7 +1677,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Netflix (3)"
+                          "Entity": "Dim Title"
                         }
                       },
                       "Property": "Title"

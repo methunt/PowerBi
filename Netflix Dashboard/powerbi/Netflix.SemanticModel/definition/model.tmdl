@@ -12,15 +12,15 @@ queryGroup Measure
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["Netflix","Measure","Last refreshed","Date","Netflix (3)"]
+annotation PBI_QueryOrder = ["Netflix","Measure","Last refreshed","Date","dim Title"]
 
-annotation PBI_ProTooling = ["DevMode"]
+annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
 
-ref table Netflix
-ref table Measure
-ref table 'Last refreshed'
 ref table Date
-ref table 'Netflix (3)'
+ref table 'Last refreshed'
+ref table Measure
+ref table Netflix
+ref table 'Dim Title'
 
 ref cultureInfo en-US
 

@@ -28,6 +28,44 @@ table Date
 
 		annotation SummarizationSetBy = Automatic
 
+	column Quarter
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e6f99023-0290-4308-a9f1-8b62eea7003c
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0e89092a-2f7f-45a6-982d-cbdcf12a9b4b
+		summarizeBy: none
+		sourceColumn: Month
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		isHidden
+		lineageTag: 8746d583-8c73-4a74-ba23-e25e8ff6b69f
+		summarizeBy: none
+		sourceColumn: Month Name
+		sortByColumn: Month
+
+		changedProperty = IsHidden
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
 	column 'Start of Year'
 		dataType: dateTime
 		isHidden
@@ -55,18 +93,6 @@ table Date
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
-
-	column Month
-		dataType: int64
-		isHidden
-		formatString: 0
-		lineageTag: 0e89092a-2f7f-45a6-982d-cbdcf12a9b4b
-		summarizeBy: none
-		sourceColumn: Month
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
 
 	column 'Start of Month'
 		dataType: dateTime
@@ -150,32 +176,6 @@ table Date
 		lineageTag: 87605509-e9a9-4972-b893-4309d249ccb2
 		summarizeBy: none
 		sourceColumn: Day of Year
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Month Name'
-		dataType: string
-		isHidden
-		lineageTag: 8746d583-8c73-4a74-ba23-e25e8ff6b69f
-		summarizeBy: none
-		sourceColumn: Month Name
-		sortByColumn: Month
-
-		changedProperty = IsHidden
-
-		changedProperty = SortByColumn
-
-		annotation SummarizationSetBy = Automatic
-
-	column Quarter
-		dataType: int64
-		isHidden
-		formatString: 0
-		lineageTag: e6f99023-0290-4308-a9f1-8b62eea7003c
-		summarizeBy: none
-		sourceColumn: Quarter
 
 		changedProperty = IsHidden
 

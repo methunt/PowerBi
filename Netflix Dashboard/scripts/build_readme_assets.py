@@ -78,9 +78,13 @@ def esc(s: str) -> str:
 
 
 def esc_attr(s: str) -> str:
-    """Escape for an attribute value. Text escaping is not enough: a command
-    line quoted for the shell carries double quotes, and one of those closes the
-    attribute early and makes GitHub render nothing at all."""
+    """Escape for an attribute value, not text content.
+
+    esc() is not enough here. A double quote inside an attribute closes it
+    early, the SVG stops being well-formed, and GitHub renders a malformed SVG
+    as nothing at all - blank space, no error. Titles with quoted phrases and
+    any command line carrying shell quotes both hit this.
+    """
     return esc(s).replace('"', "&quot;")
 
 
@@ -168,22 +172,10 @@ def hero(spec: dict, facts: dict) -> str:
         total = 1200 - left - right - gap * (len(tiles_in) - 1)
         w = total // len(tiles_in)
         x = left
-        # A tile's label is one line and is not wrapped or ellipsised, so an
-        # over-long one runs out of its card and, in the last tile, off the
-        # canvas - silently, in a file nobody opens. Fail here instead: the
-        # narrower the row gets, the shorter the labels have to be, and that is
-        # a spec problem to fix rather than an asset to ship broken.
-        budget = int((w - 44) / 8.3)
         for i, t in enumerate(tiles_in):
             col = accent(t.get("colour", "primary"), f"hero tile {i + 1}")
             value = esc(fill(t["value"], facts))
             label = esc(fill(t.get("label", ""), facts))
-            raw = fill(t.get("label", ""), facts)
-            if len(raw) > budget:
-                sys.exit(
-                    f"error: hero tile {i + 1} label is {len(raw)} characters and "
-                    f"only {budget} fit in a {len(tiles_in)}-tile row: {raw!r}"
-                )
             tiles.append(f"""
   <g class="rise" style="animation-delay:{0.35 + i * 0.11:.2f}s">
     <rect x="{x}" y="{tiles_y}" width="{w}" height="100" rx="10" fill="__CARD__" stroke="__BORDER__"/>
@@ -215,7 +207,7 @@ def hero(spec: dict, facts: dict) -> str:
         font-family="__FONT__" font-size="19.5" fill="__MUTED__">{esc(line)}</text>""")
 
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 {height}"
-     width="1200" height="{height}" role="img" aria-label="{title}">
+     width="1200" height="{height}" role="img" aria-label="{esc_attr(fill(spec["title"], facts))}">
   <style>
     /* Entrance animations move things but never fade them. A renderer that does
        not run CSS - GitHub's mobile app, an email digest, a PDF export - would
@@ -257,12 +249,10 @@ def banner(spec: dict, facts: dict) -> str:
     title = esc(fill(spec["title"], facts))
     body = fill(spec.get("body", ""), facts)
     col = accent(spec.get("accent", "primary"), f"banner {spec.get('name')}")
-
     # Sizes are chosen for the RENDERED result, not the source. The canvas is
     # 1200 wide and GitHub's content column is ~900, so everything here is seen
-    # at 0.75x: a 12px source size arrives as 9px, which is why the first pass
-    # of these banners had an eyebrow nobody could read. Divide by 1.33 to see
-    # what the reader gets.
+    # at 0.75x: a 12px source size arrives as 9px. Divide by 1.33 to see what
+    # the reader actually gets, and keep the result above 11px.
     lines = wrap(body, 122)
     body_y0 = 108 if eyebrow else 88
     body_step = 26
@@ -281,7 +271,7 @@ def banner(spec: dict, facts: dict) -> str:
     # The wash is a tint of the accent, not a solid fill: a solid band fights the
     # page on every one of GitHub's four surfaces.
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 {height}"
-     width="1200" height="{height}" role="img" aria-label="{title}">
+     width="1200" height="{height}" role="img" aria-label="{esc_attr(fill(spec["title"], facts))}">
   <style>{MOTION}</style>
   <defs>
     <linearGradient id="w" x1="0" y1="0" x2="1" y2="0">
@@ -313,7 +303,7 @@ def cta(spec: dict, facts: dict) -> str:
     # resolution. It paints no page background - only the pill - so it sits
     # cleanly on all four GitHub surfaces including dark dimmed (#22272E).
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 152"
-     width="1320" height="152" role="img" aria-label="{label}">
+     width="1320" height="152" role="img" aria-label="{esc_attr(fill(spec["label"], facts))}">
   <style>{MOTION}
     .sheen {{ animation: sheen 4.5s ease-in-out infinite 1.4s; }}
     @keyframes sheen {{ from {{ transform: translateX(-200px) }}

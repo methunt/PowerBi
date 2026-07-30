@@ -1,18 +1,18 @@
-table Netflix
-	lineageTag: ffef2d62-41c4-4e80-b780-5d798a98d5a8
+table 'Dim Title'
+	lineageTag: cd4b79ad-29f1-44a6-95e6-7d642ee33716
 
 	column ID
 		dataType: int64
 		formatString: 0
-		lineageTag: 6fd97e10-20af-410f-9b87-c1ffa22651dd
-		summarizeBy: none
+		lineageTag: dc197ab0-ca9f-450d-ade6-aad980a3cefb
+		summarizeBy: count
 		sourceColumn: ID
 
-		annotation SummarizationSetBy = User
+		annotation SummarizationSetBy = Automatic
 
 	column Type
 		dataType: string
-		lineageTag: 7b26dbad-719e-4b29-9177-1e0b29e8c63a
+		lineageTag: a62532a8-ae4f-4910-9269-6894644248c2
 		summarizeBy: none
 		sourceColumn: Type
 
@@ -20,7 +20,7 @@ table Netflix
 
 	column Title
 		dataType: string
-		lineageTag: 4c680689-953d-42ce-9e0c-ec602cb9057e
+		lineageTag: a246d706-0998-4e30-8679-62b639194514
 		summarizeBy: none
 		sourceColumn: Title
 
@@ -28,7 +28,7 @@ table Netflix
 
 	column Director
 		dataType: string
-		lineageTag: 6cd49193-6c38-472e-84bc-a4613f790d86
+		lineageTag: 5cf261ad-3389-4a16-9159-840de39a3f77
 		summarizeBy: none
 		sourceColumn: Director
 
@@ -36,7 +36,7 @@ table Netflix
 
 	column Cast
 		dataType: string
-		lineageTag: 2c5ab6c4-9834-4d52-82ba-3329acce717c
+		lineageTag: d4308e4b-81ed-42ad-88fb-f86ce688a30f
 		summarizeBy: none
 		sourceColumn: Cast
 
@@ -44,7 +44,7 @@ table Netflix
 
 	column Country
 		dataType: string
-		lineageTag: f4e8f3ea-da5a-48a6-bfe6-098ea69e14f4
+		lineageTag: 848a0f5f-025a-43c9-a88a-baa042b70c85
 		summarizeBy: none
 		sourceColumn: Country
 
@@ -53,7 +53,7 @@ table Netflix
 	column 'Date Added'
 		dataType: dateTime
 		formatString: Long Date
-		lineageTag: 3ad0fcb9-29d5-4569-a904-0cdaf2fe9b5c
+		lineageTag: 31b3c117-40a8-4ce3-994e-7b7e0fca2f12
 		summarizeBy: none
 		sourceColumn: Date Added
 
@@ -64,15 +64,15 @@ table Netflix
 	column 'Release Year'
 		dataType: int64
 		formatString: 0
-		lineageTag: af81b937-cdd6-452d-a978-0b0c9b3fc2dd
-		summarizeBy: none
+		lineageTag: ecdc8b4a-1679-41b1-a2c9-5a402439307b
+		summarizeBy: sum
 		sourceColumn: Release Year
 
-		annotation SummarizationSetBy = User
+		annotation SummarizationSetBy = Automatic
 
 	column Rating
 		dataType: string
-		lineageTag: c78aa6d0-4bbc-4d0d-96ea-fef5f275f928
+		lineageTag: 28b957ca-8f99-4f1f-8f66-cba5de27af34
 		summarizeBy: none
 		sourceColumn: Rating
 
@@ -80,7 +80,7 @@ table Netflix
 
 	column Duration
 		dataType: string
-		lineageTag: 8d273e6a-cea0-4280-89c4-d5476ad7588a
+		lineageTag: 12cceb9b-ff41-4f4b-9285-256782bd4ccf
 		summarizeBy: none
 		sourceColumn: Duration
 
@@ -88,7 +88,7 @@ table Netflix
 
 	column Genre
 		dataType: string
-		lineageTag: d7163c8f-85e9-493f-b806-32eaa4c7f64f
+		lineageTag: 70d15072-9384-4c9e-a933-06d012800b9e
 		summarizeBy: none
 		sourceColumn: Genre
 
@@ -96,22 +96,21 @@ table Netflix
 
 	column Description
 		dataType: string
-		lineageTag: bfed921d-790e-4b30-acde-f414027cfbb6
+		lineageTag: a19e84a3-9ced-41ab-a3c3-0c69dec978d9
 		summarizeBy: none
 		sourceColumn: Description
 
 		annotation SummarizationSetBy = Automatic
 
-	partition Netflix-982143c0-5b56-4c06-94cc-59706edc475f = m
+	partition 'Dim Title' = m
 		mode: import
 		source =
 				let
-				    Source = NetflixSource,
-				    #"Split Genre" = Table.ExpandListColumn(Table.TransformColumns(Source, {{"Genre", Splitter.SplitTextByDelimiter(",", QuoteStyle.Csv), let itemType = (type nullable text) meta [Serialized.Text = true] in type {itemType}}}), "Genre"),
-				    #"Split Country" = Table.ExpandListColumn(Table.TransformColumns(#"Split Genre", {{"Country", Splitter.SplitTextByDelimiter(",", QuoteStyle.Csv), let itemType = (type nullable text) meta [Serialized.Text = true] in type {itemType}}}), "Country"),
-				    #"Trimmed Text" = Table.TransformColumns(#"Split Country",{{"Genre", Text.Trim, type text}, {"Country", Text.Trim, type text}})
+				    Source = NetflixSource
 				in
-				    #"Trimmed Text"
+				    Source
+
+	changedProperty = Name
 
 	annotation PBI_NavigationStepName = Navigation
 
