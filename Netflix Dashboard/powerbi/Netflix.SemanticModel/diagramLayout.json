@@ -1,0 +1,83 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 25,
+            "y": 76
+          },
+          "nodeIndex": "Last refreshed",
+          "size": {
+            "height": 72,
+            "width": 124
+          },
+          "zIndex": 3,
+          "expandedHeight": 124
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "Measure",
+          "size": {
+            "height": 72,
+            "width": 124
+          },
+          "zIndex": 1,
+          "expandedHeight": 124
+        },
+        {
+          "location": {
+            "x": 643.5,
+            "y": 209
+          },
+          "nodeIndex": "Netflix",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 287.20000000000005,
+            "y": 0
+          },
+          "nodeIndex": "Date",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1076.2,
+            "y": 0
+          },
+          "nodeIndex": "Netflix (3)",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}
