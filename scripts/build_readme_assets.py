@@ -168,10 +168,22 @@ def hero(spec: dict, facts: dict) -> str:
         total = 1200 - left - right - gap * (len(tiles_in) - 1)
         w = total // len(tiles_in)
         x = left
+        # A tile's label is one line and is not wrapped or ellipsised, so an
+        # over-long one runs out of its card and, in the last tile, off the
+        # canvas - silently, in a file nobody opens. Fail here instead: the
+        # narrower the row gets, the shorter the labels have to be, and that is
+        # a spec problem to fix rather than an asset to ship broken.
+        budget = int((w - 44) / 8.3)
         for i, t in enumerate(tiles_in):
             col = accent(t.get("colour", "primary"), f"hero tile {i + 1}")
             value = esc(fill(t["value"], facts))
             label = esc(fill(t.get("label", ""), facts))
+            raw = fill(t.get("label", ""), facts)
+            if len(raw) > budget:
+                sys.exit(
+                    f"error: hero tile {i + 1} label is {len(raw)} characters and "
+                    f"only {budget} fit in a {len(tiles_in)}-tile row: {raw!r}"
+                )
             tiles.append(f"""
   <g class="rise" style="animation-delay:{0.35 + i * 0.11:.2f}s">
     <rect x="{x}" y="{tiles_y}" width="{w}" height="100" rx="10" fill="__CARD__" stroke="__BORDER__"/>

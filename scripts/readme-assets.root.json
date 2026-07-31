@@ -1,24 +1,12 @@
 {
-  "_comment": "Root landing page. BigQuery figures are read from that project's own summary.json so the hero cannot drift from the committed sample data. The two toolkit figures are measured runs - see readme-assets.remap.json and readme-assets.descriptions.json for how.",
+  "_comment": "Root landing page. It is an index, not a dashboard: no figures are quoted here, so it substitutes nothing and reads no facts file. Each project's own README carries its numbers, next to the evidence for them.",
 
   "out_dir": "../assets",
-  "facts_from": "../Bigquery & Dbt Cost Observability/sample-data/summary.json",
-  "facts": {
-    "projects": 3,
-    "report_pages": 7,
-    "remap_changes": 119,
-    "tmdl_fields": 240
-  },
 
   "hero": {
     "name": "hero",
     "title": "Power BI, as source code",
-    "subtitle": "A semantic model and report you can diff, a scripted month of synthetic data, and two tools that bulk-edit PBIR and TMDL files from a CSV.",
-    "tiles": [
-      { "value": "{jobs_total:,}", "label": "BigQuery jobs modelled, ${spend_total:,.2f} attributed", "colour": "primary" },
-      { "value": "{remap_changes}", "label": "field references repointed in one run", "colour": "violet" },
-      { "value": "{tmdl_fields}", "label": "TMDL fields documented from one CSV", "colour": "cyan" }
-    ],
+    "subtitle": "Two dashboards that answer a real question, two tools that kill a hundred clicks — and every artefact kept as text you can diff.",
     "badges": ["Power BI  ·  PBIP", "PBIR", "TMDL", "Python  ·  PowerShell", "Apache-2.0"]
   },
 
@@ -31,15 +19,22 @@
       "accent": "primary"
     },
     {
-      "name": "section-remap",
+      "name": "section-netflix",
       "eyebrow": "Project 2",
+      "title": "What's On Netflix",
+      "body": "One Kaggle CSV of everything Netflix listed up to September 2021, turned into a model that answers what the catalogue is made of, where it comes from, and when it arrived.",
+      "accent": "bad"
+    },
+    {
+      "name": "section-remap",
+      "eyebrow": "Project 3",
       "title": "PBIR Field Remap Toolkit",
       "body": "Repoint every field reference in a report from one table or column to another, driven by a CSV. Inventory first, then one command, no flags to get wrong.",
       "accent": "violet"
     },
     {
       "name": "section-descriptions",
-      "eyebrow": "Project 3",
+      "eyebrow": "Project 4",
       "title": "Semantic Model Descriptions",
       "body": "Load field descriptions into a TMDL model from a CSV, as the /// comments that surface as tooltips in Power BI Desktop.",
       "accent": "cyan"
