@@ -1,6 +1,6 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
-  <img alt="Power BI, as source code — two semantic models you can diff, a scripted month of synthetic data, and two tools that bulk-edit PBIR and TMDL files from a CSV." src="assets/hero-light.svg">
+  <img alt="Power BI, as source code — two dashboards that answer a real question, two tools that kill a hundred clicks, and every artefact kept as text you can diff." src="assets/hero-light.svg">
 </picture>
 
 <p>
@@ -11,7 +11,7 @@
   <img alt="Licence Apache 2.0" src="https://img.shields.io/badge/licence-Apache--2.0-059669?style=flat-square">
 </p>
 
-Four Power BI projects that all treat the artefacts as **files rather than clicks**: two semantic models and reports kept as diffable text, a synthetic month of warehouse data written by a script, and two tools that bulk-edit PBIR and TMDL from a CSV.
+Four Power BI projects, none of them clicked together by hand. **The models, the reports and the data are all text** — so you can diff them, script them, and see exactly how each one was built. Two of them are dashboards that answer a real question; two are tools I wrote because the same edit kept taking a hundred clicks.
 
 | | | |
 |---|---|---|

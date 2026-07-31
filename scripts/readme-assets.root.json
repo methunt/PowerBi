@@ -6,7 +6,7 @@
   "hero": {
     "name": "hero",
     "title": "Power BI, as source code",
-    "subtitle": "Two semantic models you can diff, a scripted month of synthetic data, and two tools that bulk-edit PBIR and TMDL files from a CSV.",
+    "subtitle": "Two dashboards that answer a real question, two tools that kill a hundred clicks — and every artefact kept as text you can diff.",
     "badges": ["Power BI  ·  PBIP", "PBIR", "TMDL", "Python  ·  PowerShell", "Apache-2.0"]
   },
 

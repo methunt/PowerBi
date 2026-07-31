@@ -32,9 +32,9 @@
   <rect class="sweep" x="40" y="116" width="1120" height="2"
         rx="1" fill="#D0D7DE"/>
   <text class="rise" style="animation-delay:0.20s" x="40" y="148"
-        font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="19.5" fill="#656D76">Two semantic models you can diff, a scripted month of synthetic data, and two tools that bulk-edit PBIR and TMDL</text>
+        font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="19.5" fill="#656D76">Two dashboards that answer a real question, two tools that kill a hundred clicks — and every artefact kept as</text>
   <text class="rise" style="animation-delay:0.25s" x="40" y="176"
-        font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="19.5" fill="#656D76">files from a CSV.</text>
+        font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="19.5" fill="#656D76">text you can diff.</text>
   <g class="rise" style="animation-delay:0.85s">
     <rect x="40" y="206" width="167" height="32" rx="16"
           fill="#EEF1F5" stroke="#D0D7DE"/>
