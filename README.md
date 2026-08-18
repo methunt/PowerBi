@@ -13,6 +13,8 @@
 
 Four Power BI projects, none of them clicked together by hand. **The models, the reports and the data are all text** — so you can diff them, script them, and see exactly how each one was built. Two of them are dashboards that answer a real question; two are tools I wrote because the same edit kept taking a hundred clicks.
 
+Each project lives in its own repo now — this page is the index. Click through for the full README, source, and history of each.
+
 | | | |
 |---|---|---|
 | 💸 | **[BigQuery + dbt Cost Observability](#-observability)** | Where the warehouse spend went, and which dbt model, test or hook spent it. **Runs offline** against a committed synthetic month — no cloud account. |
@@ -36,7 +38,9 @@ A Power BI semantic model over BigQuery's own `INFORMATION_SCHEMA` job history, 
 | 🧪 | **One synthetic month**, 4,894 jobs, $662.98 attributed | generated from a fixed seed by a stdlib-only script; no production data, and re-running reproduces the CSVs byte for byte |
 | 🔌 | **One parameter switches the source** | `p_DataSource` takes the whole model from live BigQuery to the committed CSVs and back |
 
-**[Read the full README →](Bigquery%20%26%20Dbt%20Cost%20Observability/README.md)** — architecture, every visual and the question it answers, the three-branch cost attribution, setup parameters, and the gotchas.
+**[Open the repo →](https://github.com/methunt/pbi-bigquery-dbt-cost-observability)** — architecture, every visual and the question it answers, the three-branch cost attribution, setup parameters, and the gotchas.
+
+The dbt half lives in a separate repo: **[dbt Template for BigQuery Cost Observability →](https://github.com/methunt/dbt-bigquery-cost-observability-template)** — a runnable dbt project that emits the `dbt_artifacts` metadata and job labels this report reads.
 
 ---
 
@@ -54,7 +58,7 @@ A public Kaggle snapshot of the Netflix catalogue, turned into a semantic model 
 | 🔎 | **The library stopped growing in 2019** | films peaked at 1,424 added that year, series a year later at 595 — the two halves did not turn at the same time |
 | ⚙️ | **One shared query, two grains** | the CSV is cleansed once and read by both a bridge table and a title-grain table; dropping an unused cast explosion cut the bridge **7.8×** with no number on the page changing |
 
-**[Read the full README →](Netflix%20Dashboard/README.md)** — the dataset and its gaps, every transformation and the question it unlocks, the findings with their numbers, and the three "total titles" that all disagree and are all correct.
+**[Open the repo →](https://github.com/methunt/pbi-netflix-dashboard)** — the dataset and its gaps, every transformation and the question it unlocks, the findings with their numbers, and the three "total titles" that all disagree and are all correct.
 
 ---
 
@@ -72,7 +76,7 @@ Rename a column in the semantic model and every visual bound to it breaks, with 
 | 🔁 | **Rewrites the derived strings too** | `queryRef` and `selector.metadata` are rebuilt from the field pair, so they cannot disagree with it |
 | 🔖 | **The deep scan is not optional** | it always runs, because the same 16 rules find **119 changes rather than 54** with it — and **62 of the extra 65 are inside 12 bookmark files** |
 
-**[Read the full README →](PBIR%20Field%20Remap%20Toolkit/README.md)** — the CSV contract, every JSON location it rewrites, the output logs, and the ways it can bite you.
+**[Open the repo →](https://github.com/methunt/pbir-field-remap-toolkit)** — the CSV contract, every JSON location it rewrites, the output logs, and the ways it can bite you.
 
 ---
 
@@ -90,7 +94,7 @@ Documenting a model in Desktop is a per-field click. One PowerShell script turns
 | ♻️ | **Safe to re-run** | existing comments are replaced in place, never stacked, so the CSV stays the source of truth |
 | 🔒 | **Writes UTF-8 without a BOM** | a BOM in a PBIP file makes Desktop refuse to open the project |
 
-**[Read the full README →](Semantic%20Model-Descriptions%20Mapping/README.md)** — the CSV contract, what it writes, and the ways it can report success while having done nothing.
+**[Open the repo →](https://github.com/methunt/pbi-semantic-model-mapping)** — the CSV contract, what it writes, and the ways it can report success while having done nothing.
 
 ---
 
@@ -98,19 +102,18 @@ Documenting a model in Desktop is a per-field click. One PowerShell script turns
 
 Everything below is reference — read it when you need it.
 
-### 📁 Repo layout
+### 📁 Repo index
 
-```
-PowerBi/
-├─ Bigquery & Dbt Cost Observability/   PBIP project, synthetic data, generators
-├─ Netflix Dashboard/                   PBIP project, Kaggle CSV, page captures
-├─ PBIR Field Remap Toolkit/            inventory + remap scripts, agent skill
-├─ Semantic Model-Descriptions Mapping/ TMDL description loader, agent skill
-├─ scripts/                             this page's SVG generator and its specs
-└─ assets/                              this page's light/dark SVGs
-```
+This repo is the index only — each project moved to its own repo, listed below.
 
-Each project folder is self-contained: its own README, its own assets, no shared code. The `&` in the first folder name is a shell operator, so **quote the path** in any command you run against it.
+| Repo | Contents |
+|---|---|
+| [pbi-bigquery-dbt-cost-observability](https://github.com/methunt/pbi-bigquery-dbt-cost-observability) | PBIP project, synthetic data, generators |
+| [pbi-netflix-dashboard](https://github.com/methunt/pbi-netflix-dashboard) | PBIP project, Kaggle CSV, page captures |
+| [pbir-field-remap-toolkit](https://github.com/methunt/pbir-field-remap-toolkit) | inventory + remap scripts, agent skill |
+| [pbi-semantic-model-mapping](https://github.com/methunt/pbi-semantic-model-mapping) | TMDL description loader, agent skill |
+
+This repo (`PowerBi`) keeps only `scripts/` and `assets/` for generating this page's hero/section images.
 
 ### 🤖 Agent skills
 
