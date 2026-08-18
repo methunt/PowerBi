@@ -1,3 +1,4 @@
+<h1>Power BI, as source code</h1>
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
   <img alt="Power BI, as source code — two dashboards that answer a real question, two tools that kill a hundred clicks, and every artefact kept as text you can diff." src="assets/hero-light.svg">
@@ -8,7 +9,7 @@
   <img alt="PBIR" src="https://img.shields.io/badge/report-PBIR-7C3AED?style=flat-square">
   <img alt="TMDL" src="https://img.shields.io/badge/model-TMDL-0891B2?style=flat-square">
   <img alt="Python and PowerShell" src="https://img.shields.io/badge/Python%20%C2%B7%20PowerShell-stdlib%20only-3776AB?style=flat-square">
-  <img alt="Licence Apache 2.0" src="https://img.shields.io/badge/licence-Apache--2.0-059669?style=flat-square">
+  <img alt="Licence MIT" src="https://img.shields.io/badge/licence-MIT-059669?style=flat-square">
 </p>
 
 Four Power BI projects, none of them clicked together by hand. **The models, the reports and the data are all text** — so you can diff them, script them, and see exactly how each one was built. Two of them are dashboards that answer a real question; two are tools I wrote because the same edit kept taking a hundred clicks.
@@ -25,10 +26,10 @@ Each project lives in its own repo now — this page is the index. Click through
 ---
 
 <a id="-observability"></a>
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/section-observability-dark.svg">
-  <img alt="Project 1 — BigQuery + dbt Cost Observability. Where the warehouse spend went, and which dbt model, test or hook spent it. Ships a synthetic month, so it refreshes with no cloud account." src="assets/section-observability-light.svg">
-</picture>
+
+## Project 1 — BigQuery + dbt Cost Observability
+
+<img alt="Where the warehouse spend went, and which dbt model, test or hook spent it. Ships a synthetic month, so it refreshes with no cloud account." src="assets/section-observability-light.svg">
 
 A Power BI semantic model over BigQuery's own `INFORMATION_SCHEMA` job history, joined to `dbt_artifacts`. It answers the two questions cloud billing cannot: **where did the spend go**, and **which dbt node spent it**.
 
@@ -45,10 +46,10 @@ The dbt half lives in a separate repo: **[dbt Template for BigQuery Cost Observa
 ---
 
 <a id="-netflix"></a>
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/section-netflix-dark.svg">
-  <img alt="Project 2 — What's On Netflix. One Kaggle CSV of everything Netflix listed up to September 2021, turned into a model that answers what the catalogue is made of, where it comes from, and when it arrived." src="assets/section-netflix-light.svg">
-</picture>
+
+## Project 2 — What's On Netflix
+
+<img alt="One Kaggle CSV of everything Netflix listed up to September 2021, turned into a model that answers what the catalogue is made of, where it comes from, and when it arrived." src="assets/section-netflix-light.svg">
 
 A public Kaggle snapshot of the Netflix catalogue, turned into a semantic model and a three-view report. Three of its columns hold comma-separated lists rather than values, and getting past that is most of the work — a title filed under `Dramas, International Movies` cannot be grouped by genre until the list becomes rows.
 
@@ -63,10 +64,10 @@ A public Kaggle snapshot of the Netflix catalogue, turned into a semantic model 
 ---
 
 <a id="-remap"></a>
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/section-remap-dark.svg">
-  <img alt="Project 3 — PBIR Field Remap Toolkit. Repoint every field reference in a report from one table or column to another, driven by a CSV. Inventory first, then one command, no flags to get wrong." src="assets/section-remap-light.svg">
-</picture>
+
+## Project 3 — PBIR Field Remap Toolkit
+
+<img alt="Repoint every field reference in a report from one table or column to another, driven by a CSV. Inventory first, then one command, no flags to get wrong." src="assets/section-remap-light.svg">
 
 Rename a column in the semantic model and every visual bound to it breaks, with nothing to tell you how many places are affected. Two Python scripts, no dependencies: one inventories every field reference, the other repoints them from a CSV.
 
@@ -81,10 +82,10 @@ Rename a column in the semantic model and every visual bound to it breaks, with 
 ---
 
 <a id="-descriptions"></a>
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/section-descriptions-dark.svg">
-  <img alt="Project 4 — Semantic Model Descriptions. Load field descriptions into a TMDL model from a CSV, as the /// comments that surface as tooltips in Power BI Desktop." src="assets/section-descriptions-light.svg">
-</picture>
+
+## Project 4 — Semantic Model Descriptions
+
+<img alt="Load field descriptions into a TMDL model from a CSV, as the /// comments that surface as tooltips in Power BI Desktop." src="assets/section-descriptions-light.svg">
 
 Documenting a model in Desktop is a per-field click. One PowerShell script turns a CSV into the `///` comment lines TMDL actually stores — and TMDL has no `description:` property, so this is the only form that parses.
 
@@ -121,4 +122,4 @@ Both toolkits ship a `SKILL.md` describing their workflow for an assistant that 
 
 ### 📄 Licence
 
-[Apache-2.0](LICENSE). The synthetic data is synthetic: no production data, table names or addresses appear anywhere in this repository.
+[MIT](LICENSE). The synthetic data is synthetic: no production data, table names or addresses appear anywhere in this repository.

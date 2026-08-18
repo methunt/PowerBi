@@ -3,11 +3,13 @@
 
   "out_dir": "../assets",
 
+  "_hero_comment": "No badges: the shields.io row right under the hero already covers Power BI/PBIR/TMDL/Python+PowerShell/MIT - baking them into the SVG a second time said nothing new.",
   "hero": {
     "name": "hero",
     "title": "Power BI, as source code",
+    "eyebrow": "PBIP  ·  DIFFABLE  ·  NO BINARY",
     "subtitle": "Two dashboards that answer a real question, two tools that kill a hundred clicks — and every artefact kept as text you can diff.",
-    "badges": ["Power BI  ·  PBIP", "PBIR", "TMDL", "Python  ·  PowerShell", "Apache-2.0"]
+    "accent": "primary"
   },
 
   "banners": [
